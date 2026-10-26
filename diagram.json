@@ -1,0 +1,91 @@
+
+{
+  "version": 1,
+  "author": "Library Occupancy Prediction",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "entry",
+      "top": -100,
+      "left": -220,
+      "attrs": { "distance": "200" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "exit",
+      "top": 100,
+      "left": -220,
+      "attrs": { "distance": "200" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": -100,
+      "left": 250,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "green",
+      "top": 10,
+      "left": 300,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "yellow",
+      "top": 60,
+      "left": 300,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "red",
+      "top": 110,
+      "left": 300,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 180,
+      "left": 280,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["esp:5", "entry:TRIG", "green", []],
+    ["esp:18", "entry:ECHO", "green", []],
+    ["esp:17", "exit:TRIG", "green", []],
+    ["esp:16", "exit:ECHO", "green", []],
+
+    ["esp:VIN", "entry:VCC", "red", []],
+    ["esp:GND.1", "entry:GND", "black", []],
+    ["esp:VIN", "exit:VCC", "red", []],
+    ["esp:GND.1", "exit:GND", "black", []],
+
+    ["esp:21", "lcd:SDA", "green", []],
+    ["esp:22", "lcd:SCL", "green", []],
+    ["esp:VIN", "lcd:VCC", "red", []],
+    ["esp:GND.1", "lcd:GND", "black", []],
+
+    ["esp:25", "green:A", "green", []],
+    ["green:C", "esp:GND.1", "black", []],
+    ["esp:26", "yellow:A", "green", []],
+    ["yellow:C", "esp:GND.1", "black", []],
+    ["esp:27", "red:A", "green", []],
+    ["red:C", "esp:GND.1", "black", []],
+
+    ["esp:14", "buzzer:1", "green", []],
+    ["buzzer:2", "esp:GND.1", "black", []]
+  ],
+  "dependencies": {}
+}
